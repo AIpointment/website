@@ -4,18 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AIpointment - Company Data</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/company-data-styles.css">
+    <link rel="stylesheet" href="styles/footer-styles.css">
+    <link rel="stylesheet" href="styles/navbar-styles.css">
 </head>
 <body>
-    <!-- Navbar -->
-    <header class="navbar">
-        <div class="logo">aipointment</div>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-            <a href="company-data.html" class="button">Book Now</a>
-        </nav>
-    </header>
+     <!-- Navbar will be loaded here -->
+    <div id="navbar"></div>
 
     <!-- Company Data Entry Form -->
     <main class="data-entry-page">
@@ -37,11 +32,11 @@
         </form>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2024 AIpointment. All rights reserved.</p>
-    </footer>
+      <!-- Footer -->
+      <div id="footer"></div>
 
-    <script src="script.js"></script>
+      <script src="javascript/load-navbar-footer.js"></script>
+      <script src="javascript/form-handler.js"></script> <!-- Make sure the path is correct -->
+
 </body>
 </html>

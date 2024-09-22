@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AIpointment - Interaction</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/interaction-styles.css">
+    <link rel="stylesheet" href="styles/footer-styles.css">
+    <link rel="stylesheet" href="styles/navbar-styles.css">
 </head>
 <body>
     <!-- Navbar will be loaded here dynamically -->
@@ -12,24 +14,34 @@
 
     <!-- Interaction Section -->
     <main class="interaction-page">
-        <h2>Call in Progress...</h2>
-        <div class="interaction-box">
-            <p id="apiTextOutput">AIpointment: "Hello, we are contacting you to schedule an appointment."</p>
-            <button class="play-button" onclick="simulateReply()">Simulate Customer Reply</button>
-            <audio id="apiSoundOutput" controls>
-                <source src="customer-reply.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
+        <div class="interaction-container">
+            <!-- Left: Ringing or Waiting icon -->
+            <div class="left-status">
+                <div id="statusIcon" class="ringing">Ringing...</div>
+            </div>
+            <!-- Right: Chatbox -->
+            <div class="right-chatbox" id="chatbox">
+                <div class="chat-message bot-message">
+                    AIpointment: "Hello, try your new voice assistant"
+                </div>
+            </div>
+        </div>
+
+        <!-- Voice Input Button -->
+        <div class="interaction-controls">
+            <button class="record-button hidden" id="recordButton" onmousedown="startRecording(event)">Hold to Record</button>
+        </div>
+
+        <!-- Final Message -->
+        <div id="finalMessage" class="final-message hidden">
+            <p>Thank you for using AIpointment! Want to make scheduling easier? Contact us to learn more!</p>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer>
-        <p>© 2024 AIpointment. All rights reserved.</p>
-    </footer>
+    <div id="footer"></div>
 
-    <!-- Load the navbar and JavaScript for interaction -->
-    <script src="navbar.js"></script>
-    <script src="script.js"></script>
+    <script src="javascript/load-navbar-footer.js"></script>
+    <script src="javascript/interaction-handler.js"></script>
 </body>
 </html>
