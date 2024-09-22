@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIpointment - Company Data</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">aipointment</div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="company-data.html" class="button">Book Now</a>
+        </nav>
+    </header>
+
+    <!-- Company Data Entry Form -->
+    <main class="data-entry-page">
+        <h2>Enter Company Data</h2>
+        <form id="companyDataForm">
+            <label for="companyName">Company Name:</label>
+            <input type="text" id="companyName" name="companyName" placeholder="Enter your company name" required>
+
+            <label for="taskType">Task Type:</label>
+            <select id="taskType" name="taskType" required>
+                <option value="medicalAppointment">Call to schedule a medical appointment</option>
+                <option value="delivery">Call for delivery appointment</option>
+            </select>
+
+            <label for="scheduleDate">Schedule Date:</label>
+            <input type="date" id="scheduleDate" name="scheduleDate" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 AIpointment. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
