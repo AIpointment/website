@@ -1,0 +1,52 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f4f4f4;  /* Ensure same background color */
+    color: #333;                /* Ensure same text color */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+/* Main content */
+.about-page {
+    flex-grow: 1;  /* This allows the main content to grow and push the footer down */
+    text-align: center;
+    padding: 50px;
+}
+
+.about-section {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 30px;
+}
+
+.person {
+    max-width: 300px;
+}
+
+.profile-pic {
+    width: 100%;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.person h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.person p {
+    font-size: 1rem;
+    color: #555;
+}
+

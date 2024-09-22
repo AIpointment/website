@@ -1,0 +1,51 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Landing Page */
+.landing-page {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.demo-section h2 {
+    font-size: 2.5rem;
+    color: #ff5733;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.play-button {
+    font-size: 1.5rem;
+    padding: 15px 30px;
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.play-button:hover {
+    background-color: #ff8f33;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
