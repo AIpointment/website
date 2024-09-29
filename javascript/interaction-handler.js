@@ -1,120 +1,138 @@
 let isRecording = false;
-let isHoldingButton = false;
-let recordingStartTime;
+let mediaRecorder;
+let audioChunks = [];
 
-// Retrieve the company name from the URL
-function getCompanyNameFromUrl() {
+// Get the necessary elements
+const recordButton = document.getElementById('recordButton');
+const audioPlayback = document.getElementById('audioPlayback');
+
+// Define startRecording function
+function startRecording() {
+    if (isRecording) return;  // Prevent multiple recordings
+    isRecording = true;
+
+    // Access the microphone and start recording
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+        mediaRecorder = new MediaRecorder(stream);
+        audioChunks = [];  // Reset chunks
+
+        mediaRecorder.ondataavailable = event => {
+            audioChunks.push(event.data);
+        };
+
+        mediaRecorder.start();
+        recordButton.textContent = 'Recording...';  // Change button text
+        recordButton.classList.add('recording');  // Optional: Add style during recording
+
+        // Stop recording when the button is released
+        recordButton.addEventListener('mouseup', stopRecording);
+        recordButton.addEventListener('mouseleave', stopRecording); // Handle if mouse leaves the button
+    });
+}
+
+// Define stopRecording function
+function stopRecording() {
+    if (!isRecording) return;
+    isRecording = false;
+
+    mediaRecorder.stop();
+    recordButton.textContent = 'Hold to Record';  // Revert button text
+    recordButton.classList.remove('recording');  // Remove recording style
+
+    mediaRecorder.onstop = () => {
+        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+        const audioUrl = URL.createObjectURL(audioBlob);
+        audioPlayback.src = audioUrl;
+        audioPlayback.controls = true; // Show playback controls after recording
+        audioChunks = [];  // Reset chunks 
+    };
+
+    const chatbox = document.getElementById('chatbox');
+    const audioMessage = document.createElement('div');
+    audioMessage.classList.add('chat-message', 'user-message');  // User's message styling
+    audioMessage.appendChild(audioElement);  // Append the audio element
+    chatbox.appendChild(audioMessage); 
+}
+
+// Retrieve the company name, task type, and schedule date from the URL
+function getQueryParam(param) {
     const params = new URLSearchParams(window.location.search);
-    return params.get('companyName') || 'Unknown Company'; // Default to 'Unknown Company' if not found
+    return params.get(param) || 'Unknown';
+}
+
+// Send the API request and wait for the response
+async function sendApiRequest(companyName, taskType, scheduleDate) {
+    // Show loading indicator (after connection simulation)
+    document.getElementById('statusIcon').textContent = 'Loading...';
+    
+    // Format the data to send to the API
+    const textToSend = `Company: ${companyName}, Task: ${taskType}, Date: ${scheduleDate}`;
+
+    try {
+        // Send the request to the API
+        // const response = await fetch(`https://aipointment-3cb9cb51d408.herokuapp.com/gpt?text=${encodeURIComponent(textToSend)}`);
+
+        // if (!response.ok) {
+        //     throw new Error('Failed to get API response');
+        // }
+
+        // // Parse the API response
+        // const apiResponse = await response.json();
+        // console.log("API Response:", apiResponse);
+
+        // Display the API response in the chatbox
+        //displayApiResponse(apiResponse["answer gpt "]);
+        displayApiResponse("hello hello", companyName)
+            // Show the record button after the API response is displayed
+        recordButton.classList.remove('hidden');
+        recordButton.style.display = 'block'; // Make sure the button is displayed
+
+    } catch (error) {
+        console.error('Error fetching API response:', error);
+        document.getElementById('statusIcon').textContent = 'Error occurred while waiting for response';
+    }
 }
 
 // Simulate the API reply after a 5-second ringing delay
-function startDemo() {
+function startDemo(companyName, taskType, scheduleDate) {
     // Display "Ringing..."
     document.getElementById('statusIcon').textContent = 'Ringing...';
 
     setTimeout(() => {
         // After 5 seconds, change "Ringing..." to "Connected"
         document.getElementById('statusIcon').textContent = 'Connected';
-        
-        // Simulate API reply after connection
-        simulateApiReply();
-    }, 5000);
+
+        // Start sending the API request after "Connected"
+        sendApiRequest(companyName, taskType, scheduleDate);
+
+    }, 2000); // 5-second delay for ringing
 }
 
-// Simulate the API text and audio reply
-function simulateApiReply() {
-    const companyName = getCompanyNameFromUrl();  // Get the company name from the URL
+// Display the API response in the chatbox
+function displayApiResponse(apiResponse, companyName) {
+    // Hide the loading status
+    document.getElementById('statusIcon').textContent = '';
+
     const chatbox = document.getElementById('chatbox');
 
-    // Company message
+    // Add the second message from the company in orange
     const companyMessage = document.createElement('div');
-    companyMessage.classList.add('chat-message', 'bot-message');
-    companyMessage.textContent = `${companyName}: "Hello, we are contacting you to schedule an appointment."`;
+    companyMessage.classList.add('chat-message', 'company-message');  // Applying orange class
+    companyMessage.textContent = ` ${apiResponse+ "  :  " + companyName || 'No answer found'}`;  // Replace AIpointment with company name
     chatbox.appendChild(companyMessage);
-
-    // Simulate playing audio
-    playAudio();
 }
 
-// Simulate playing audio
-function playAudio() {
-    const statusIcon = document.getElementById('statusIcon');
-    statusIcon.textContent = 'Playing Audio...';
+// Initialize interaction when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the query parameters from the URL
+    // Ensure the button supports touch events for mobile
+    const companyName = getQueryParam('companyName');
+    const taskType = getQueryParam('taskType');
+    const scheduleDate = getQueryParam('scheduleDate');
 
-    setTimeout(() => {
-        statusIcon.textContent = ''; // Clear the status after the audio plays
-        enableRecording(); // Enable the recording button after audio finishes
-    }, 3000); // Assume 3 seconds for audio
-}
+    recordButton.addEventListener('touchstart', startRecording);
+    recordButton.addEventListener('touchend', stopRecording);
 
-// Enable the "Record" button
-function enableRecording() {
-    const recordButton = document.getElementById('recordButton');
-    recordButton.disabled = false;
-    recordButton.classList.remove('hidden'); // Show the record button
-}
-
-// Start recording user's voice input
-function startRecording(event) {
-    isRecording = true;
-    isHoldingButton = true;
-    recordingStartTime = new Date();
-
-    document.getElementById('statusIcon').textContent = 'Recording...';
-
-    // Listen for the button release (simulating user holding the button)
-    event.target.addEventListener('mouseup', stopRecording);
-}
-
-// Stop recording
-function stopRecording() {
-    isHoldingButton = false;
-    document.getElementById('statusIcon').textContent = 'Loading...';
-    document.getElementById('recordButton').classList.add('hidden'); // Hide the record button
-
-    // Simulate waiting for the API response
-    setTimeout(() => {
-        const chatbox = document.getElementById('chatbox');
-        const userReply = document.createElement('div');
-        userReply.classList.add('chat-message', 'user-message');
-        userReply.textContent = 'You: "I confirm the appointment."';
-        chatbox.appendChild(userReply);
-
-        // Simulate final API response
-        simulateFinalReply();
-    }, 3000); // Simulate 3-second delay for the API response
-}
-
-// Simulate the final API reply
-function simulateFinalReply() {
-    setTimeout(() => {
-        const chatbox = document.getElementById('chatbox');
-        const finalReply = document.createElement('div');
-        finalReply.classList.add('chat-message', 'bot-message');
-        finalReply.textContent = 'AIpointment: "Your appointment has been confirmed."';
-        chatbox.appendChild(finalReply);
-
-        document.getElementById('statusIcon').textContent = ''; // Clear status after final reply
-        
-        // Finish the chat after 5 seconds
-        setTimeout(() => {
-            finishChat();
-        }, 5000);
-    }, 3000); // Mock the final reply time
-}
-
-// End the chat sequence and prevent further interactions
-function finishChat() {
-    const chatbox = document.getElementById('chatbox');
-    const finishedMessage = document.createElement('div');
-    finishedMessage.classList.add('chat-message', 'finished-message');
-    finishedMessage.textContent = 'The chat has finished. Thank you for using AIpointment.';
-    chatbox.appendChild(finishedMessage);
-    
-    // Optionally hide the status icon
-    document.getElementById('statusIcon').style.display = 'none';
-}
-
-// Start the demo automatically when the page loads
-startDemo();
+    // Start the demo, which includes ringing, connecting, and waiting for the API response
+    startDemo(companyName, taskType, scheduleDate);
+});
