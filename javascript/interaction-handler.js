@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Function to start the real connection
 function startConnection(companyName, taskType, scheduleDate) {
     // Hide the status icon since we are not simulating ringing
-    statusIcon.classList.add('hidden');
+    // statusIcon.classList.add('hidden');
 
     // Construct the initial message
     const initialMessage = `Company: ${companyName}, Task: ${taskType}, Date: ${scheduleDate}`;
@@ -68,7 +68,7 @@ function handleSendMessage() {
     messageInput.value = '';
 
     // Disable the input field and send button
-    messageInput.classList.add('hidden');
+    // messageInput.classList.add('hidden');
     interactionControls.classList.add('hidden');
 
     // Send the message to the API
@@ -89,8 +89,8 @@ function displayUserMessage(message) {
 // Function to send API request
 async function sendApiRequest(message, isInitialRequest = false) {
     // Show loading indicator
-    statusIcon.textContent = 'Loading...';
-    statusIcon.classList.remove('hidden');
+    updateStatus('loading', 'Loading...');
+    // statusIcon.classList.remove('hidden');
 
     try {
         // Construct the API URL with the message
@@ -99,8 +99,10 @@ async function sendApiRequest(message, isInitialRequest = false) {
         // Send the request to the API
         const response = await fetch(apiUrl);
 
+        updateStatus('Connected', 'Connected'); 
+
         if (!response.ok) {
-            throw new Error('Failed to get API response');
+            updateStatus('error', 'Error occurred'); // Error state
         }
 
         // Parse the API response
@@ -119,15 +121,15 @@ async function sendApiRequest(message, isInitialRequest = false) {
         displayApiResponse('Sorry, an error occurred. Please try again later.');
     } finally {
         // Hide the loading status
-        statusIcon.textContent = '';
-        statusIcon.classList.add('hidden');
+        updateStatus('Connected', 'Connected'); 
+        // statusIcon.classList.add('hidden');
 
         if (isInitialRequest) {
             // After initial request, display the input controls
             interactionControls.classList.remove('hidden');
         } else {
             // After user's message, hide the input controls and show final section
-            interactionControls.classList.add('hidden');
+            // interactionControls.classList.add('hidden');
             finalSection.classList.remove('hidden');
         }
     }
@@ -144,4 +146,16 @@ function displayApiResponse(apiResponse) {
 
     // Scroll to the bottom
     chatbox.scrollTop = chatbox.scrollHeight;
+}
+
+// Function to update the status
+function updateStatus(status, message) {
+    // Update the text of the status icon
+    statusIcon.textContent = message;
+
+    // Remove any previous status classes (ringing, waiting, etc.)
+    statusIcon.classList.remove('ringing', 'waiting', 'connected', 'error', 'loading');
+
+    // Add the new status class
+    statusIcon.classList.add(status); // e.g., 'connected', 'loading', 'error'
 }

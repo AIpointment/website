@@ -42,15 +42,27 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #ff5733;
 }
 
 /* Styles for the ringing/waiting animation */
-.ringing,
-.waiting {
-    font-size: 1.2rem;
-    color: #ff5733;
+/* Blinking status (e.g., when loading) */
+.loading {
+    color: #ff5733;/* Orange for loading */
     animation: blink 1s infinite;
 }
+
+/* Non-blinking statuses */
+.connected {
+    color: #ff5733; /* Green for connected */
+    animation: none; /* No blinking */
+}
+
+.error {
+    color: #dc3545; /* Red for error */
+    animation: none; /* No blinking */
+}
+
 
 /* Blinking effect for status */
 @keyframes blink {
@@ -168,23 +180,8 @@ footer {
 
 /* Final Section */
 .final-section {
-    text-align: center;
-    margin-top: 20px;
-}
-
-#backButton {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #ff5733;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 0 auto; /* Center the button */
-}
-
-#backButton:hover {
-    background-color: #ff8f33;
+    align-content: center;
+    margin: 20px;
 }
 
 /* Adjustments to chat messages */
@@ -254,11 +251,33 @@ footer {
     margin-bottom: 20px; /* More space between text and button */
 }
 
-#backButton {
-    margin-top: 20px; /* Add space between the button and the message */
-}
-
 /* Hide elements */
 .hidden {
     display: none;
+}
+
+/* Use flexbox to center the button */
+.button-container {
+    display: flex; /* Enable flexbox layout */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 100%; /* Ensure container spans full width */
+    height: auto; /* Let the container size dynamically based on content */
+    padding: 40px 0; /* Add some vertical padding to keep things visually balanced */
+}
+
+/* Styling for the button */
+#backButton {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 auto; /* Centers the button in relation to other elements */
+}
+
+#backButton:hover {
+    background-color: #ff8f33;
 }
