@@ -1,138 +1,147 @@
-let isRecording = false;
-let mediaRecorder;
-let audioChunks = [];
+// Get necessary elements
+const chatbox = document.getElementById('chatbox');
+const statusIcon = document.getElementById('statusIcon');
+const messageInput = document.getElementById('messageInput');
+const sendButton = document.getElementById('sendButton');
+const interactionControls = document.getElementById('interactionControls');
+const finalSection = document.getElementById('finalSection');
+const backButton = document.getElementById('backButton');
 
-// Get the necessary elements
-const recordButton = document.getElementById('recordButton');
-const audioPlayback = document.getElementById('audioPlayback');
-
-// Define startRecording function
-function startRecording() {
-    if (isRecording) return;  // Prevent multiple recordings
-    isRecording = true;
-
-    // Access the microphone and start recording
-    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-        mediaRecorder = new MediaRecorder(stream);
-        audioChunks = [];  // Reset chunks
-
-        mediaRecorder.ondataavailable = event => {
-            audioChunks.push(event.data);
-        };
-
-        mediaRecorder.start();
-        recordButton.textContent = 'Recording...';  // Change button text
-        recordButton.classList.add('recording');  // Optional: Add style during recording
-
-        // Stop recording when the button is released
-        recordButton.addEventListener('mouseup', stopRecording);
-        recordButton.addEventListener('mouseleave', stopRecording); // Handle if mouse leaves the button
-    });
-}
-
-// Define stopRecording function
-function stopRecording() {
-    if (!isRecording) return;
-    isRecording = false;
-
-    mediaRecorder.stop();
-    recordButton.textContent = 'Hold to Record';  // Revert button text
-    recordButton.classList.remove('recording');  // Remove recording style
-
-    mediaRecorder.onstop = () => {
-        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-        const audioUrl = URL.createObjectURL(audioBlob);
-        audioPlayback.src = audioUrl;
-        audioPlayback.controls = true; // Show playback controls after recording
-        audioChunks = [];  // Reset chunks 
-    };
-
-    const chatbox = document.getElementById('chatbox');
-    const audioMessage = document.createElement('div');
-    audioMessage.classList.add('chat-message', 'user-message');  // User's message styling
-    audioMessage.appendChild(audioElement);  // Append the audio element
-    chatbox.appendChild(audioMessage); 
-}
-
-// Retrieve the company name, task type, and schedule date from the URL
+// Retrieve query parameters from URL
 function getQueryParam(param) {
     const params = new URLSearchParams(window.location.search);
     return params.get(param) || 'Unknown';
 }
 
-// Send the API request and wait for the response
-async function sendApiRequest(companyName, taskType, scheduleDate) {
-    // Show loading indicator (after connection simulation)
-    document.getElementById('statusIcon').textContent = 'Loading...';
-    
-    // Format the data to send to the API
-    const textToSend = `Company: ${companyName}, Task: ${taskType}, Date: ${scheduleDate}`;
-
-    try {
-        // Send the request to the API
-        // const response = await fetch(`https://aipointment-3cb9cb51d408.herokuapp.com/gpt?text=${encodeURIComponent(textToSend)}`);
-
-        // if (!response.ok) {
-        //     throw new Error('Failed to get API response');
-        // }
-
-        // // Parse the API response
-        // const apiResponse = await response.json();
-        // console.log("API Response:", apiResponse);
-
-        // Display the API response in the chatbox
-        //displayApiResponse(apiResponse["answer gpt "]);
-        displayApiResponse("hello hello", companyName)
-            // Show the record button after the API response is displayed
-        recordButton.classList.remove('hidden');
-        recordButton.style.display = 'block'; // Make sure the button is displayed
-
-    } catch (error) {
-        console.error('Error fetching API response:', error);
-        document.getElementById('statusIcon').textContent = 'Error occurred while waiting for response';
-    }
-}
-
-// Simulate the API reply after a 5-second ringing delay
-function startDemo(companyName, taskType, scheduleDate) {
-    // Display "Ringing..."
-    document.getElementById('statusIcon').textContent = 'Ringing...';
-
-    setTimeout(() => {
-        // After 5 seconds, change "Ringing..." to "Connected"
-        document.getElementById('statusIcon').textContent = 'Connected';
-
-        // Start sending the API request after "Connected"
-        sendApiRequest(companyName, taskType, scheduleDate);
-
-    }, 2000); // 5-second delay for ringing
-}
-
-// Display the API response in the chatbox
-function displayApiResponse(apiResponse, companyName) {
-    // Hide the loading status
-    document.getElementById('statusIcon').textContent = '';
-
-    const chatbox = document.getElementById('chatbox');
-
-    // Add the second message from the company in orange
-    const companyMessage = document.createElement('div');
-    companyMessage.classList.add('chat-message', 'company-message');  // Applying orange class
-    companyMessage.textContent = ` ${apiResponse+ "  :  " + companyName || 'No answer found'}`;  // Replace AIpointment with company name
-    chatbox.appendChild(companyMessage);
-}
-
 // Initialize interaction when the page loads
 document.addEventListener('DOMContentLoaded', function() {
-    // Get the query parameters from the URL
-    // Ensure the button supports touch events for mobile
     const companyName = getQueryParam('companyName');
     const taskType = getQueryParam('taskType');
     const scheduleDate = getQueryParam('scheduleDate');
 
-    recordButton.addEventListener('touchstart', startRecording);
-    recordButton.addEventListener('touchend', stopRecording);
+    // Start the real connection
+    startConnection(companyName, taskType, scheduleDate);
 
-    // Start the demo, which includes ringing, connecting, and waiting for the API response
-    startDemo(companyName, taskType, scheduleDate);
+    // Event listener for the send button
+    if (sendButton) {
+        sendButton.addEventListener('click', handleSendMessage);
+    }
+
+    // Allow sending message by pressing Enter key
+    if (messageInput) {
+        messageInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                handleSendMessage();
+            }
+        });
+    }
+
+    // Event listener for the back button
+    if (backButton) {
+        backButton.addEventListener('click', function() {
+            window.location.href = 'index.html'; // Change this to your homepage URL
+        });
+    }
 });
+
+// Function to start the real connection
+function startConnection(companyName, taskType, scheduleDate) {
+    // Hide the status icon since we are not simulating ringing
+    statusIcon.classList.add('hidden');
+
+    // Construct the initial message
+    const initialMessage = `Company: ${companyName}, Task: ${taskType}, Date: ${scheduleDate}`;
+
+    // Send the initial message to the server
+    sendApiRequest(initialMessage, true);
+}
+
+// Handle sending the user's message
+function handleSendMessage() {
+    const message = messageInput.value.trim();
+    if (message === '') return;
+
+    // Display user's message in the chatbox
+    displayUserMessage(message);
+
+    // Clear the input field
+    messageInput.value = '';
+
+    // Disable the input field and send button
+    messageInput.classList.add('hidden');
+    interactionControls.classList.add('hidden');
+
+    // Send the message to the API
+    sendApiRequest(message);
+}
+
+// Function to display user's message
+function displayUserMessage(message) {
+    const userMessage = document.createElement('div');
+    userMessage.classList.add('chat-message', 'user-message');
+    userMessage.textContent = `You: ${message}`;
+    chatbox.appendChild(userMessage);
+
+    // Scroll to the bottom
+    chatbox.scrollTop = chatbox.scrollHeight;
+}
+
+// Function to send API request
+async function sendApiRequest(message, isInitialRequest = false) {
+    // Show loading indicator
+    statusIcon.textContent = 'Loading...';
+    statusIcon.classList.remove('hidden');
+
+    try {
+        // Construct the API URL with the message
+        const apiUrl = `https://aipointment-3cb9cb51d408.herokuapp.com/gpt?text=${encodeURIComponent(message)}`;
+
+        // Send the request to the API
+        const response = await fetch(apiUrl);
+
+        if (!response.ok) {
+            throw new Error('Failed to get API response');
+        }
+
+        // Parse the API response
+        const apiResponse = await response.json();
+        console.log("API Response:", apiResponse);
+
+        // Access the correct key in the API response
+        const answer = apiResponse["answer gpt "] || apiResponse["answer gpt "] || 'No answer found';
+
+        // Display the API response in the chatbox
+        displayApiResponse(answer);
+
+    } catch (error) {
+        console.error('Error fetching API response:', error);
+        statusIcon.textContent = 'Error occurred while waiting for response';
+        displayApiResponse('Sorry, an error occurred. Please try again later.');
+    } finally {
+        // Hide the loading status
+        statusIcon.textContent = '';
+        statusIcon.classList.add('hidden');
+
+        if (isInitialRequest) {
+            // After initial request, display the input controls
+            interactionControls.classList.remove('hidden');
+        } else {
+            // After user's message, hide the input controls and show final section
+            interactionControls.classList.add('hidden');
+            finalSection.classList.remove('hidden');
+        }
+    }
+}
+
+// Function to display the API response
+function displayApiResponse(apiResponse) {
+    const companyName = getQueryParam('companyName');
+
+    const companyMessage = document.createElement('div');
+    companyMessage.classList.add('chat-message', 'bot-message');
+    companyMessage.textContent = `${companyName}: "${apiResponse}"`;  // Display company name and response
+    chatbox.appendChild(companyMessage);
+
+    // Scroll to the bottom
+    chatbox.scrollTop = chatbox.scrollHeight;
+}
