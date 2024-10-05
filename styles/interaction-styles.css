@@ -42,15 +42,27 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #ff5733;
 }
 
 /* Styles for the ringing/waiting animation */
-.ringing,
-.waiting {
-    font-size: 1.2rem;
-    color: #ff5733;
+/* Blinking status (e.g., when loading) */
+.loading {
+    color: #ff5733;/* Orange for loading */
     animation: blink 1s infinite;
 }
+
+/* Non-blinking statuses */
+.connected {
+    color: #ff5733; /* Green for connected */
+    animation: none; /* No blinking */
+}
+
+.error {
+    color: #dc3545; /* Red for error */
+    animation: none; /* No blinking */
+}
+
 
 /* Blinking effect for status */
 @keyframes blink {
@@ -140,4 +152,132 @@ footer {
     padding: 10px;
     margin-bottom: 10px;
     color: #333; /* Keep the text color the same */
+}
+
+#messageInput {
+    width: 80%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+#sendButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#sendButton img {
+    width: 30px;
+    height: 30px;
+}
+
+/* Hide the interaction controls when not needed */
+.hidden {
+    display: none;
+}
+
+/* Final Section */
+.final-section {
+    align-content: center;
+    margin: 20px;
+}
+
+/* Adjustments to chat messages */
+.bot-message {
+    text-align: left;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.user-message {
+    text-align: right;
+    background-color: rgba(255, 87, 51, 0.1);
+    color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Container for the input and icon */
+.message-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensures the icon and text input are evenly spaced */
+    background-color: #fff; /* Match the input background */
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    padding: 5px 10px;
+    width: 100%; /* Set the width to take up available space */
+    max-width: 600px; /* Adjust max-width for larger screens */
+    margin: 20px auto 0; /* Center the input box */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the input field */
+#messageInput {
+    flex-grow: 1;
+    border: none;
+    padding: 10px;
+    border-radius: 25px;
+    font-size: 1rem;
+    outline: none;
+}
+
+/* Styling for the send button */
+#sendButton {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin-left: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+/* Styling for the icon inside the button */
+#sendButton img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+/* Adjust space in final section */
+.final-message p {
+    margin-bottom: 20px; /* More space between text and button */
+}
+
+/* Hide elements */
+.hidden {
+    display: none;
+}
+
+/* Use flexbox to center the button */
+.button-container {
+    display: flex; /* Enable flexbox layout */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 100%; /* Ensure container spans full width */
+    height: auto; /* Let the container size dynamically based on content */
+    padding: 40px 0; /* Add some vertical padding to keep things visually balanced */
+}
+
+/* Styling for the button */
+#backButton {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 auto; /* Centers the button in relation to other elements */
+}
+
+#backButton:hover {
+    background-color: #ff8f33;
 }
