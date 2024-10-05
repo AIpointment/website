@@ -50,3 +50,12 @@ body {
     color: #555;
 }
 
+.email-link {
+    color: #FF5733; /* Change this to your desired color */
+    text-decoration: none; /* Optional: Removes the underline */
+}
+
+.email-link:hover {
+    color: #C70039; /* Optional: Color change on hover */
+    text-decoration: underline; /* Optional: Add underline on hover */
+}
