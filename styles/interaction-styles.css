@@ -12,7 +12,7 @@ body {
     flex-direction: column;
     min-height: 100vh; /* Ensures the body takes up the full height of the viewport */
     margin: 0;
-    overflow: hidden; /* Prevents scrolling */
+    overflow: visible; /* allows to scroll down the website */
     background-color: #f4f4f4;
     flex-grow: 1;
 }
@@ -25,7 +25,7 @@ body {
     align-items: center;
     flex-grow: 1; /* Ensures the main content expands to fill the available space */
     padding: 40px;
-    overflow: hidden; /* Prevents scrolling within the interaction section */
+    overflow: visible; /* Prevents scrolling within the interaction section */
 }
 
 /* Interaction Container */
@@ -35,6 +35,8 @@ body {
     max-width: 800px;
     margin-bottom: 20px;
 }
+
+
 
 /* Left status section to show ringing/waiting */
 .left-status {
@@ -72,12 +74,17 @@ body {
 }
 
 /* Right chatbox */
+/*.right-chatbox {*/
+/*    width: 70%;*/
+/*    padding: 20px;*/
+/*    background-color: #fff;*/
+/*    border-radius: 10px;*/
+/*    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);*/
+/*}*/
 .right-chatbox {
-    width: 70%;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    flex: 3;
+    text-align: right;
+    position: relative;
 }
 
 /* Individual chat messages */
@@ -111,21 +118,21 @@ body {
 }
 
 /* Voice Input Button */
-.record-button {
-    font-size: 1.5rem;
-    padding: 15px 30px;
-    background-color: #ff5733;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
-}
+/*.record-button {*/
+/*    font-size: 1.5rem;*/
+/*    padding: 15px 30px;*/
+/*    background-color: #ff5733;*/
+/*    color: white;*/
+/*    border: none;*/
+/*    border-radius: 10px;*/
+/*    cursor: pointer;*/
+/*    transition: background-color 0.3s, box-shadow 0.3s;*/
+/*}*/
 
-.record-button:hover {
-    background-color: #ff8f33;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
+/*.record-button:hover {*/
+/*    background-color: #ff8f33;*/
+/*    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);*/
+/*}*/
 
 /* Final Message */
 .final-message {
@@ -154,19 +161,19 @@ footer {
     color: #333; /* Keep the text color the same */
 }
 
-#messageInput {
-    width: 80%;
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-#sendButton {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    margin-left: 10px;
-}
+/*#messageInput {*/
+/*    width: 80%;*/
+/*    padding: 10px;*/
+/*    font-size: 1rem;*/
+/*    border: 1px solid #ccc;*/
+/*    border-radius: 5px;*/
+/*}*/
+/*#sendButton {*/
+/*    background-color: transparent;*/
+/*    border: none;*/
+/*    cursor: pointer;*/
+/*    margin-left: 10px;*/
+/*}*/
 
 #sendButton img {
     width: 30px;
@@ -194,39 +201,34 @@ footer {
     margin-bottom: 10px;
 }
 
-.user-message {
-    text-align: right;
-    background-color: rgba(255, 87, 51, 0.1);
-    color: #333;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
+/*.user-message {*/
+/*    text-align: right;*/
+/*    background-color: rgba(255, 87, 51, 0.1);*/
+/*    color: #333;*/
+/*    padding: 10px;*/
+/*    border-radius: 5px;*/
+/*    margin-bottom: 10px;*/
+/*}*/
 
 /* Container for the input and icon */
-.message-input-container {
+.voice-button {
+    text-align: center;
+}
+.right-record-button {
     display: flex;
-    align-items: center;
-    justify-content: space-between; /* Ensures the icon and text input are evenly spaced */
-    background-color: #fff; /* Match the input background */
-    border: 1px solid #ccc;
-    border-radius: 25px;
-    padding: 5px 10px;
-    width: 100%; /* Set the width to take up available space */
-    max-width: 600px; /* Adjust max-width for larger screens */
-    margin: 20px auto 0; /* Center the input box */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
 }
-
 /* Styling for the input field */
-#messageInput {
-    flex-grow: 1;
-    border: none;
-    padding: 10px;
-    border-radius: 25px;
-    font-size: 1rem;
-    outline: none;
-}
+/*#messageInput {*/
+/*    flex-grow: 1;*/
+/*    border: none;*/
+/*    padding: 10px;*/
+/*    border-radius: 25px;*/
+/*    font-size: 1rem;*/
+/*    outline: none;*/
+/*}*/
 
 /* Styling for the send button */
 #sendButton {
@@ -280,4 +282,35 @@ footer {
 
 #backButton:hover {
     background-color: #ff8f33;
+}
+
+#recordButton {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    outline: none;
+}
+
+#recordButton:active {
+    transform: scale(0.95);
+}
+
+.loading-circle {
+    border: 8px solid #f3f3f3; /* Reduced border width to make the circle smaller */
+    border-top: 8px solid orange; /* Changed color to orange */
+    border-radius: 50%;
+    width: 60px; /* Reduced width to make the circle smaller */
+    height: 60px; /* Reduced height to make the circle smaller */
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
