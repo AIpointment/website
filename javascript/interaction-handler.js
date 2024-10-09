@@ -130,7 +130,7 @@ async function sendApiRequest(message, isInitialRequest = false) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({ text: answer })
-            });
+           });
         const audioBlob = await audio_response.blob();
         const audioObjUrl = URL.createObjectURL(audioBlob);
         const audio = new Audio(audioObjUrl);
@@ -225,13 +225,14 @@ async function initRecorder() {
             audioChunks = [];
             document.getElementById('recordButton').style.backgroundColor = '#f44336';
             // document.getElementById('recordButton').textContent = 'Recording';
-            recordingDuration = 0;
-            recordingInterval = setInterval(() => {
-                recordingDuration++;
-                let minutes = Math.floor(recordingDuration / 60);
-                let seconds = recordingDuration % 60;
-                document.getElementById('recordButton').textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-            }, 1000);
+            // document.getElementById('recordButton').textContent = 'Recording';
+            // recordingDuration = 0;
+            // recordingInterval = setInterval(() => {
+            //     recordingDuration++;
+            //     let minutes = Math.floor(recordingDuration / 60);
+            //     let seconds = recordingDuration % 60;
+            //     document.getElementById('recordButton').textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            // }, 1000);
         };
 
         mediaRecorder.ondataavailable = event => {
