@@ -50,3 +50,13 @@ body {
     color: #555;
 }
 
+.email-link {
+    color: black;
+    text-decoration: none; /* Removes underline */
+}
+
+.email-link:hover {
+    color: #ff5733;;
+    text-decoration: none; /* Removes underline on hover */
+}
+
