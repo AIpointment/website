@@ -1,13 +1,13 @@
 /* Footer Styles */
 footer {
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #1F0810;/* Matches navbar background color */
+    color: #EDECEF; /* Matches navbar text color */
     text-align: center;
     padding: 20px;
     position: relative;
     bottom: 0;
     width: 100%;
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -0.1px 10px rgba(255, 88, 51, 0.135); /* Adds a shadow above the footer with 50% opacity */
     z-index: 1000;
 }
 
@@ -17,11 +17,11 @@ footer p {
 }
 
 footer a {
-    color: #ff5733;
+    color: #ff5733; /* Accent color for links */
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 footer a:hover {
-    color: #333;
+    color: #EDECEF; /* Matches footer text color on hover */
 }

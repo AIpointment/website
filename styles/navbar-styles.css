@@ -1,19 +1,41 @@
 /* Navbar Styles */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1F0810;
     padding: 20px;
-    background-color: #f4f4f4;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
+    box-shadow: 0 4px 10px rgba(255, 88, 51, 0.05);
     z-index: 1000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+    /* Bottom Navbar */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1F0810;
+    padding: 20px;
+    box-shadow: 0 -4px 10px rgba(255, 88, 51, 0.05);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
+    font-weight:300;
+    font-style: normal;
 }
 
 .navbar .logo a {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #333;
+    color: #EDECEF;
     text-decoration: none;
 }
 
@@ -23,12 +45,12 @@
 
 .navbar nav {
     display: flex;
-    gap: 20px;
+    gap: 20px; /* Adds space between navigation links */
 }
 
 .navbar nav a {
     text-decoration: none;
-    color: #333;
+    color: #EDECEF; /* Matches the logo color */
     font-size: 1rem;
     font-weight: 500;
     padding: 10px 20px;
@@ -37,6 +59,21 @@
 
 .navbar nav a:hover {
     color: #ff5733;
-    background-color: #f0f0f0;
+    background-color: #1e0904;
     border-radius: 10px;
 }
+
+body {
+    margin: 0.5%;
+    padding: 0.5%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
+    font-weight:300;
+    font-style: normal;
+}
+
+
+  
+  

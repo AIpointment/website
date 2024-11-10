@@ -7,9 +7,9 @@
 
 /* Body */
 body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: "Geist", sans-serif;
+    background-color: #1e0904; /* Matches the navbar and footer background */
+    color: #EDECEF;            /* Matches the navbar and footer text color */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -23,11 +23,15 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+    overflow-y: auto;
+    padding-top: 17%; /* Adjust this value to match the height of your navbar */
+    padding-bottom: 15%; /* If there’s a bottom navbar as well */
 }
 
+/* Demo Section */
 .demo-section h2 {
     font-size: 2.5rem;
-    color: #ff5733;
+    color: #EDECEF;      /* Adjusted to light color for contrast on dark background */
     margin-bottom: 20px;
     font-weight: 600;
 }
@@ -35,18 +39,104 @@ body {
 .play-button {
     font-size: 1.5rem;
     padding: 15px 30px;
-    background-color: #ff5733;
+    background-color: #ff5733; /* Bright button color for attention */
     color: white;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(255, 88, 51, 0.627); /* Light orange shadow with 30% opacity */
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Updated shadow */
 }
 
 .play-button:hover {
-    background-color: #ff8f33;
+    background-color: #ff8f33; /* Slightly lighter hover color */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* Partners Section */
+.partners {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 1%;
+    margin-bottom: 1%;
+    align-items: center;
+}
+
+.logo-image {
+    width: auto; /* Set a fixed width for both logos */
+    height: 50px;  /* Ensures the logo maintains its aspect ratio */
+    padding: 1%;
+}
+
+/* Slogan and Partners Container */
+.slogan-partners {
+    /* display: flex; */
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10%; /* Adds padding for spacing */
+    gap: 40px; /* Adds space between the logo section and product description */
+    max-width: 1000px; /* Adjust to control width if needed */
+    margin: 2%; /* Centers the section on the page */
+    flex-wrap: wrap; /* Enables wrapping on smaller screens */
+    width: 100%;
+}
+
+/* Left-Aligned Logo Section */
+.logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.product-description p {
+    font-size: 100%;
+    color: #EDECEF;
+    line-height: 1.6;
+    text-align: left;
+    word-wrap: break-word; /* Prevents text overflow */
+    max-width: 100%; /* Controls width of the text block */
+    min-width: 100%;
+    padding-top: 5%;
+    margin-top: 5%;
+    margin: 1%;
+}
+
+
+/* Responsive Container */
+.responsive-container {
+    max-width: 1200px; /* Limits the container width on larger screens */
+    padding: 20px 20px;   /* Adds padding on the sides to avoid text touching the edges */
+    margin: 0 auto;    /* Centers the container */
+    box-sizing: border-box;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    .slogan-partners {
+        flex-direction: column; /* Switch to single-column layout on small screens */
+        align-items: center;
+    }
+
+    .logo-section, .product-description {
+        max-width: 100%; /* Allow full width for each section */
+        text-align: center; /*Center text for a balanced appearance*/
+        width: 100%; /* Adjust to full width */
+        max-width: 100%;
+    }
+    .partners {
+        flex-direction: column; /* Stack images in a column */
+        gap: 40px; /* Adjust spacing between images for smaller screens */
+        align-items: center; /* Center align images in the column */
+        /* margin-bottom: 1px; */
+    }
+
+    .logo-image {
+        height: 40px; /* Optional: Adjust logo size for smaller screens */
+    }
+
+    .landing-page {
+        margin-top: 40px; /* Adjust this value to match the height of your navbar */
+    }
+    
+}

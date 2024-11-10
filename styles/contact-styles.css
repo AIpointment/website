@@ -8,11 +8,11 @@
 /* Body */
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #1e0904; /* Dark background color */
+    color: #EDECEF;            /* Light text color */
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ensures the body takes up the full height of the viewport */
+    min-height: 100vh;
     flex-grow: 1;
 }
 
@@ -21,11 +21,13 @@ body {
     text-align: center;
     padding: 50px;
     flex-grow: 1;  /* Allows the main content to grow and push the footer down */
+    color: #EDECEF; /* Ensures text matches the overall theme */
 }
 
 .contact-page h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
+    color: #ff5733; /* Orange color for headings to create emphasis */
 }
 
 .contact-page p {
@@ -36,19 +38,18 @@ body {
 .catchy-phrase {
     font-size: 1.5rem;
     margin-top: 30px;
-    color: #ff5733;
+    color: #ff5733; /* Bright orange color to make it stand out */
 }
 
 /* Email Link */
 .contact-page a {
-    color: #333;
+    color: #EDECEF; /* Light color to match the dark background */
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 .contact-page a:hover {
-    color: #ff5733;
+    color: #ff5733; /* Bright orange for hover effect */
     text-decoration: underline;
 }
-
-
