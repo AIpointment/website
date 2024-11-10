@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../styles/about-styles.css">
     <link rel="stylesheet" href="../styles/footer-styles.css">
     <link rel="stylesheet" href="../styles/navbar-styles.css">
+    <link rel="landing-styles" href="../styles/landing-styles.css">
 </head>
 <body>
     <!-- Navbar will be loaded here -->
@@ -14,20 +15,47 @@
 
     <!-- About Section -->
     <main class="about-page">
-        <h1>About Us</h1>
-        <div class="about-section">
-            <div class="person">
-                <img src="../images/niklas.jpg" alt="Niklas" class="profile-pic">
-                <h2>Niklas Schröder</h2>
-                <p>Robotics master student from TU Munich</p>
-                <p><a href="mailto:niklas.schröder@epfl.ch" class="email-link">niklas.schröder@epfl.ch</a></p>
-            </div>
-            <div class="person">
-                <img src="../images/nino.jpg" alt="Nino" class="profile-pic">
-                <h2>Nino Gerber</h2>
-                <p>Datascience master student from EPFL</p>
-                <p><a href="mailto:nino.gerber@epfl.ch" class="email-link">nino.gerber@epfl.ch</a></p>
-            </div>
+        <div class="responsive-container">
+            <!-- Mission Section -->
+            <section class="mission-section">
+                <h1>Our Mission</h1>
+                <p>To revolutionize client interaction through advanced AI-driven solutions, enabling businesses to be accessible, efficient, and human-centered, 24/7.</p>
+            </section>
+
+            <!-- Product Description Section -->
+            <section class="product-description">
+                <p>AIpointment offers a seamless, round-the-clock solution to enhance customer interaction through human-like, automated phone call handling. Our platform ensures 24/7 reachability, fostering customer trust and satisfaction while reducing operational costs. Designed for modern businesses, AIpointment combines automation with natural communication to transform routine client interactions into engaging experiences.</p>
+            </section>
+        </div>
+
+        <div class="responsive-container">
+            <section class="team-section">
+                <div class="about-section">
+                    <div class="person">
+                        <img src="../images/niklas.jpg" alt="Niklas" class="profile-pic">
+                        <div class="person-infos">
+                            <h2>Niklas Schröder</h2>
+                            <p>Robotics master student from TU Munich</p>
+                            <p><a href="mailto:niklas.schröder@epfl.ch" class="email-link">niklas.schröder@epfl.ch</a></p>
+                            <a href="https://www.linkedin.com/in/niklas-profile" target="_blank">
+                                <img src="../images/linkedin-icon.png" alt="LinkedIn" class="linkedin-icon">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="person">
+                    
+                        <img src="../images/nino.jpg" alt="Nino" class="profile-pic">
+                        <div class="person-infos">
+                            <h2>Nino Gerber</h2>
+                            <p>Data science master student from EPFL</p>
+                            <p><a href="mailto:nino.gerber@epfl.ch" class="email-link">nino.gerber@epfl.ch</a></p>
+                            <a href="https://www.linkedin.com/in/nino-profile" target="_blank">
+                                <img src="../images/linkedin-icon.png" alt="LinkedIn" class="linkedin-icon">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
 

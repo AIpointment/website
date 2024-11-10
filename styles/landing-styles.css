@@ -8,7 +8,7 @@
 /* Body */
 body {
     font-family: "Geist", sans-serif;
-    background-color: #1e0904; /* Matches the navbar and footer background */
+    background-color: #0b0300;
     color: #EDECEF;            /* Matches the navbar and footer text color */
     display: flex;
     flex-direction: column;
@@ -227,7 +227,6 @@ body {
 }
 
 .typewriter-text {
-
     white-space: nowrap;
     overflow: hidden;
     display: inline-block;

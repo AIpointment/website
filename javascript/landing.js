@@ -22,7 +22,7 @@ function handlePlayDemo() {
     const typewriterElement = document.getElementById('typewriter-text');
     typeText(typewriterElement, newText, 80, () => {
         // After the message is complete, show and type the phone number
-        const phoneNumber = "023 445 67 98";
+        const phoneNumber = "+41 62 539 12 76";
         const phoneNumberElement = document.getElementById('phone-number');
         phoneNumberElement.style.display = 'block';
         typeText(phoneNumberElement, phoneNumber, 100);

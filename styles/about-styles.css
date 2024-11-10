@@ -7,59 +7,175 @@
 
 /* Body */
 body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #1e0904;  /* Dark background color */
-    color: #EDECEF;             /* Light text color */
+    font-family: "Geist", sans-serif;
+    background-color: #1e0904;
+    color: #EDECEF;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    overflow-y: auto;
 }
 
-/* Main content */
+/* About Page */
 .about-page {
-    flex-grow: 1;  /* This allows the main content to grow and push the footer down */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15%;
+}
+
+/* Mission Section */
+.mission-section {
     text-align: center;
-    padding: 50px;
-    color: #EDECEF; /* Ensures the text color matches the dark theme */
+    margin-bottom: 3%;
+    text-align: justify;
+}
+
+.mission-section h1 {
+    font-size: 2.5rem;
+    color: #ff5733;
+    margin-bottom: 1%;
+    text-align: center;
+}
+
+.mission-section p {
+    font-size: 1.3rem; /* Increased font size */
+    line-height: 1.6;
+    font-weight: 700;
+    color: #EDECEF;
+}
+
+/* Product Description */
+.product-description {
+    text-align: justify;
+    margin-bottom: 3%;
+}
+
+.product-description h2 {
+    font-size: 2rem;
+    color: #ff5733;
+}
+
+.product-description p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #EDECEF;
+    text-align: justify;
+}
+
+/* Team Section */
+.team-section {
+    /* background-color: #2b2b2b;  */
+    flex-direction: column;
 }
 
 .about-section {
     display: flex;
+    gap: 20px;
     justify-content: center;
-    gap: 50px;
-    margin-top: 30px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-.person {
-    max-width: 300px;
-}
-
+/* Profile Picture Styling */
 .profile-pic {
-    width: 100%;
-    border-radius: 50%;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(255, 87, 51, 0.2); /* Light orange shadow for profile pic */
+    width: 100%;               /* Allows the image to fill the container's width */
+    height: auto;              /* Maintains aspect ratio based on width */
+    max-height: 150px;   
+    max-width: 150px;
+    border-radius: 50%;        /* Makes the image circular */
+    object-fit: cover;         /* Ensures the image fills the container fully while maintaining aspect ratio */
+    margin-right: 20px;
 }
+
+/* Features Section */
+.features-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    /* padding: 20px; */
+}
+
+/* Profile Container */
+.person {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 20px;
+    background-color: #292929;
+    text-align: left;
+    border-radius: 10px;
+    padding: 20px;
+    flex: 1 1 30%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.person-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.person-info h2 {
+    font-size: 1.3rem;
+    color: #ff5733;
+    margin-bottom: 5px;
+}
+
+.person-info p {
+    font-size: 1rem;
+    color: #EDECEF;
+    margin: 5px 0;
+}
+
 
 .person h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #ff5733; /* Orange color for headers to add emphasis */
+    font-size: 1.3rem;
+    color: #ff5733;
+    margin-bottom: 8px;
 }
 
 .person p {
     font-size: 1rem;
-    color: #EDECEF; /* Matches the theme's light text color */
+    color: #EDECEF;
 }
 
 .email-link {
-    color: #EDECEF; /* Light color for consistency */
+    color: #ff5733;
     text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
 }
 
 .email-link:hover {
-    color: #ff5733; /* Orange color on hover */
-    text-decoration: none;
+    color: #ff8f33;
+}
+
+.linkedin-icon {
+    width: 25px;
+    height: 25px;
+    margin-top: 10px;
+    transition: transform 0.3s ease;
+}
+
+.linkedin-icon:hover {
+    transform: scale(1.2);
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    .about-page {
+        padding: 4%;
+    }
+
+    .product-description, .mission-section {
+        padding: 0 5%;
+    }
+
+    .team-section {
+        padding: 20px;
+    }
+
+    .person {
+        max-width: 100%;
+    }
 }
