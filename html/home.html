@@ -17,40 +17,68 @@
 
     <!-- Main Content -->
     <main class="landing-page">
-        <div class="demo-section">
-            <h2>Try the Demo</h2>
-            <button class="play-button" onclick="window.location.href='company-data.html'">▶ Play Demo</button>
+        <div class="responsive-container">
+            <div class="demo-section">
+                <div class="demo-element">
+                    <!-- Updated to use id="typewriter-text" -->
+                    <h2><span id="typewriter-text" class="typewriter-text" >Automize Your Phone Calls</span></h2>
+                </div>
+                <div class="demo-element">
+                    <!-- Updated button to match JavaScript function -->
+                    <button id="play-button" class="play-button" onclick="handlePlayDemo()">▶ Play Demo</button>
+                    <!-- Initially hidden phone number -->
+                    <p id="phone-number" style="display: none; color: #ff5733; font-size: 1.5rem; font-weight: bold;">0234456788</p>
+                </div>
+            </div>
         </div>
+        <div class="responsive-container">
+            <section class="features-section">
+                <div class="feature-box">
+                    <img src="../images/infinity.png" alt="Feature 1 Icon" class="feature-icon">
+                    <h3>24h Reachability</h3>
+                    <p>Ensure constant availability for your clients, with seamless support around the clock, improving customer satisfaction and loyalty.</p>
+                </div>
+                <div class="feature-box">
+                    <img src="../images/social-interaction.png" alt="Feature 2 Icon" class="feature-icon">
+                    <h3>Human Like Interaction</h3>
+                    <p>Engage clients with natural and responsive interactions, making interactions feel like with a real conversation partner, which builds trust and comfort.</p>
+                </div>
+                <div class="feature-box">
+                    <img src="../images/creative-writing.png" alt="Feature 3 Icon" class="feature-icon">
+                    <h3>Call Transcription</h3>
+                    <p>Automatically transcribe calls for easy record-keeping and analysis, saving time while ensuring accuracy and accessibility of client information.</p>
+                </div>
+            </section>
+        </div>
+
 
         <!-- Slogan and Partners Section -->
         <div class="responsive-container">
-            <section class="slogan-partners">
-                <!-- Left-Aligned Logos and Slogan -->
-                <!-- <div class="logo-section"> -->
-                    <!-- <h2>Developed at:</h2> -->
-                    <div class="partners">
-                        <img src="../images/epfl.svg" alt="EPFL Logo" class="logo-image">
-                        <img src="../images/changemakers.png" alt="Changemakers Logo" class="logo-image">
-                        <img src="../images/tum.png" alt="TUM Logo" class="logo-image">
-                    </div>
-
-                <!-- Right-Aligned Product Description -->
-                <div class="product-description">
-                    <!-- <h2>Our Product:</h2> -->
+            <div class="product-description">
+                <!-- <h2>Our Product:</h2> -->
+                <div class="text-box">
+                    <h3>Our Product</h3>
                     <p>
                         AIpointment is an advanced AI-powered platform that automates scheduling, enhances client interactions,
                         and optimizes business workflows. Designed for seamless integration, it transforms client interactions
                         by using state-of-the-art technology.
                     </p>
                 </div>
-            </section>
+            </div>  
+        </div> 
+            <div class="responsive-container">
+                <div class="partners">
+                    <img src="../images/epfl.svg" alt="EPFL Logo" class="logo-image">
+                    <img src="../images/changemakers.png" alt="Changemakers Logo" class="logo-image">
+                    <img src="../images/tum.png" alt="TUM Logo" class="logo-image">
+                </div>
+            </div>
         </div>  
-
     </main>
 
     <!-- Footer -->
     <div id="footer"></div>
-
     <script src="../javascript/load-navbar-footer.js"></script>
+    <script src="../javascript/landing.js"></script>
 </body>
 </html>

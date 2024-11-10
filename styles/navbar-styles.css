@@ -1,6 +1,21 @@
+/* Navbar Wrapper */
+.navbar-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1F0810;
+    box-shadow: 0 4px 10px rgba(255, 88, 51, 0.05);
+    z-index: 1000;
+    width: 100%;     /* Fills the full width of its container */
+    padding: 20px 20px;   /* Adds padding on the sides to avoid text touching the edges */
+    margin: 0 auto;    /* Centers the container */
+    box-sizing: border-box;
+}
+
 /* Navbar Styles */
 .navbar {
-    position: fixed;
+    background-color: aqua;
     top: 0;
     left: 0;
     width: 100%;
@@ -8,12 +23,17 @@
     padding: 20px;
     box-shadow: 0 4px 10px rgba(255, 88, 51, 0.05);
     z-index: 1000;
-    display: flex;
-    justify-content: space-around;
+    display:flex;
+    justify-content: space-between;
+    max-width: 1000px;
     align-items: center;
+    max-width: 1200px; /* Limits the container width on larger screens */
+    padding: 20px 20px;   /* Adds padding on the sides to avoid text touching the edges */
+    margin: 0 auto;    /* Centers the container */
+    box-sizing: border-box;
 }
 
-    /* Bottom Navbar */
+   /* Bottom Navbar */
 .footer {
     position: fixed;
     bottom: 0;
@@ -43,11 +63,6 @@
     color: #ff5733;
 }
 
-.navbar nav {
-    display: flex;
-    gap: 20px; /* Adds space between navigation links */
-}
-
 .navbar nav a {
     text-decoration: none;
     color: #EDECEF; /* Matches the logo color */
@@ -63,6 +78,23 @@
     border-radius: 10px;
 }
 
+.navbutton {
+    /* background-color: #ff5733; */
+    display: flex;
+    gap: 2%; /* Adds space between navigation links */
+}
+
+.logo {
+    /* background-color: #ff5733; */
+    display: flex;
+}
+
+/* Highlighted AI in Orange */
+.logo-highlight {
+    color: #ff5733; /* Orange color */
+}
+
+
 body {
     margin: 0.5%;
     padding: 0.5%;
@@ -72,8 +104,4 @@ body {
     font-optical-sizing: auto;
     font-weight:300;
     font-style: normal;
-}
-
-
-  
-  
+} 
