@@ -248,3 +248,37 @@ body {
     }
 }
 
+
+
+.play-button  {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s ease forwards;
+}
+.features-section {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 2s ease forwards;
+}
+
+.product-description {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 3s ease forwards;
+}
+
+
+.partners {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 3s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+

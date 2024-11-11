@@ -21,7 +21,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 15%;
+    margin-top: 17%;
 }
 
 /* Mission Section */
@@ -198,5 +198,49 @@ body {
     }
     .mission-section h1, .product-description h2, .person-info h2 {
         font-size: 1.8rem; /* Adjust header size for smaller screens */
+    }
+}
+@media (max-width: 768px) {
+    .mission-section h1 {
+        font-size: 2rem;
+    }
+    .mission-section p, .product-description p {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+}
+
+
+.person {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.person:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.mission-section {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s ease forwards;
+}
+
+.about-section {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 3s ease forwards;
+}
+
+.product-description{
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 2s ease forwards;
+}
+
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

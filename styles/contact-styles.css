@@ -22,6 +22,7 @@ body {
     padding: 50px;
     flex-grow: 1;  /* Allows the main content to grow and push the footer down */
     color: #EDECEF; /* Ensures text matches the overall theme */
+    margin-top: 10%;
 }
 
 .contact-page h1 {
@@ -52,4 +53,29 @@ body {
 .contact-page a:hover {
     color: #ff5733; /* Bright orange for hover effect */
     text-decoration: underline;
+}
+
+
+.contact-page h1 {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s ease forwards;
+}
+.contact-page p {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 2s ease forwards;
+}
+
+.catchy-phrase {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 3s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
