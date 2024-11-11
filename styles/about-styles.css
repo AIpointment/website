@@ -156,13 +156,18 @@ body {
     .person {
         max-width: 100%;
     }
+    
 }
 
-/* Hover and Animation Effects */
-.person:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+@media (max-width: 500px) {
+    .person {
+        flex-direction: column; /* Stacks items vertically */
+        align-items: center;    /* Center-aligns content */
+        text-align: center;     /* Centers text under the image */
+        padding: 15px;          /* Adjusts padding for compact look */
+    }
 }
+
 
 .mission-section,
 .product-description,

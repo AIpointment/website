@@ -137,6 +137,7 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     max-width: 300px;
     transition: transform 0.3s ease; /* Animation on hover */
+
 }
 
 .text-box {
@@ -151,8 +152,13 @@ body {
     transition: transform 0.3s ease; /* Animation on hover */
 }
 
+.text-box p {
+    font-size: 1rem;
+}
+
+
 .text-box h3 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     color: #ff5733; /* Accent color for titles */
     margin-bottom: 10px;
 }
@@ -168,14 +174,16 @@ body {
 }
 
 .feature-box h3 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     color: #ff5733; /* Accent color for titles */
     margin-bottom: 10px;
 }
 
 .feature-box p {
+    font-size: 1rem;
     text-align: justify;
     color: #EDECEF;
+
 }
 
 /* Responsive Layout */

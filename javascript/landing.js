@@ -14,8 +14,8 @@ function typeText(element, text, speed = 100, callback = null) {
 }
 
 function handlePlayDemo() {
-    // Hide the Play Demo button
-    document.getElementById('play-button').style.display = 'none';
+    // Make the Play Demo button invisible without removing it from the layout
+    document.getElementById('play-button').style.visibility = 'hidden';
 
     // Type the new message, then type the phone number as a callback
     const newText = 'Our call-assistant explains ';
@@ -28,6 +28,7 @@ function handlePlayDemo() {
         typeText(phoneNumberElement, phoneNumber, 100);
     });
 }
+
 
 const elements = document.querySelectorAll('.fade-in');
 const observer = new IntersectionObserver(entries => {
