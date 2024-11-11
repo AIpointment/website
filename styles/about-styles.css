@@ -80,12 +80,14 @@ body {
 /* Profile Picture Styling */
 .profile-pic {
     width: 100%;               /* Allows the image to fill the container's width */
-    height: auto;              /* Maintains aspect ratio based on width */
+    height: 100%;              /* Maintains aspect ratio based on width */
     max-height: 150px;   
     max-width: 150px;
     border-radius: 50%;        /* Makes the image circular */
     object-fit: cover;         /* Ensures the image fills the container fully while maintaining aspect ratio */
     margin-right: 20px;
+    min-width: 100px; /* Ensure it never shrinks below this */
+    min-height: 100px; /* Ensure it never shrinks below this */
 }
 
 /* Features Section */
@@ -177,5 +179,24 @@ body {
 
     .person {
         max-width: 100%;
+    }
+}
+
+/* Adjust text and container behavior on smaller screens */
+.person-info, .product-description {
+    max-width: 100%; /* Ensure full width usage */
+    word-wrap: break-word; /* Break long words */
+    overflow-wrap: break-word; /* Ensure text wraps within bounds */
+    white-space: normal; /* Allow normal line breaks */
+}
+
+/* Responsive font sizes for smaller screens */
+@media (max-width: 768px) {
+    .mission-section p, .product-description p, .person-info p {
+        font-size: 1rem; /* Reduce font size for better fit */
+        line-height: 1.4; /* Adjust line height if needed */
+    }
+    .mission-section h1, .product-description h2, .person-info h2 {
+        font-size: 1.8rem; /* Adjust header size for smaller screens */
     }
 }
