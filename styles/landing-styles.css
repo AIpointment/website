@@ -118,7 +118,7 @@ body {
     max-width: 1200px; /* Limits the container width on larger screens */
     padding: 20px 20px;   /* Adds padding on the sides to avoid text touching the edges */
     margin: 2%;    /*Centers the container */
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
 }
 
 /* Features Section */
