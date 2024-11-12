@@ -137,7 +137,16 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     max-width: 300px;
     transition: transform 0.3s ease; /* Animation on hover */
+    
+}
 
+.feature-box p {
+    font-size: 1rem;
+    text-align: justify; /* Keep justified alignment */
+    color: #EDECEF;
+    line-height: 1.6; /* Slightly increase line spacing for better readability */
+    word-spacing: 0.05em; /* Add a slight word spacing to reduce excessive stretching */
+    hyphens: auto; /* Enable hyphenation to reduce spacing issues */
 }
 
 .text-box {
@@ -178,14 +187,6 @@ body {
     color: #ff5733; /* Accent color for titles */
     margin-bottom: 10px;
 }
-
-.feature-box p {
-    font-size: 1rem;
-    text-align: justify;
-    color: #EDECEF;
-
-}
-
 /* Responsive Layout */
 @media (max-width: 768px) {
     .features-section {
